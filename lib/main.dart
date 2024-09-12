@@ -37,6 +37,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final String guessWord = 'sit';
 
+  String buttonText = 'Guess me';
+
   late String currentGuess;
   late List<bool> correctGuessTracker;
   late List<bool> correctPositionTracker;
@@ -78,8 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
         guess2 = _processCorrectGuess();
       } else if (guessCountTracker == 2) {
         guess3 = _processCorrectGuess();
+        buttonText = 'Play again';
       } else {
         // show result if user was able to guess or not
+        
       }
       guessCountTracker++;
       _clearInput();
@@ -93,6 +97,31 @@ class _MyHomePageState extends State<MyHomePage> {
     currentGuess = "";
     correctGuessTracker = [false, false, false];
     correctPositionTracker = [false, false, false];
+  }
+
+  void _resetAll() {
+    setState(() {
+      buttonText = 'Guess me';
+      guessCountTracker = 0;
+      currentGuess = '';
+      correctGuessTracker = [false, false, false];
+      correctPositionTracker = [false, false, false];
+      guess1 = GuessModal(
+        letters: '',
+        correctGuessTracker: List.filled(3, false),
+        correctPositionTracker: List.filled(3, false),
+      );
+      guess2 = GuessModal(
+        letters: '',
+        correctGuessTracker: List.filled(3, false),
+        correctPositionTracker: List.filled(3, false),
+      );
+      guess3 = GuessModal(
+        letters: '',
+        correctGuessTracker: List.filled(3, false),
+        correctPositionTracker: List.filled(3, false),
+      );
+    });
   }
 
   GuessModal _processCorrectGuess() {
@@ -110,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (!correctPositionTracker[i]) {
         // if current guess was not found at correct position find if it exists at other unique position
         for (int j = 0; j < 3; j++) {
-          if (currentGuess[i] == guessWord[j] &&
+          if (currentGuess[j] == guessWord[i] &&
               !correctPositionTracker[j] &&
               !correctGuessTracker[j]) {
             // handling the same letter case,
@@ -188,8 +217,14 @@ class _MyHomePageState extends State<MyHomePage> {
             DisabledGuess(guess: guess2),
             DisabledGuess(guess: guess3),
             ElevatedButton(
-              onPressed: _print,
-              child: Text('Guess me'),
+              onPressed: () {
+                if (buttonText == 'Play again') {
+                  _resetAll();
+                } else {
+                  _print();
+                }
+              },
+              child: Text(buttonText),
             ),
           ],
         ),
