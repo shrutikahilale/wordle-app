@@ -41,9 +41,21 @@ class _MyHomePageState extends State<MyHomePage> {
   late List<bool> correctGuessTracker;
   late List<bool> correctPositionTracker;
 
-   GuessModal guess1 = GuessModal(letters: '', correctGuessTracker: List.filled(3, false), correctPositionTracker: List.filled(3, false),);
-   GuessModal guess2 = GuessModal(letters: '', correctGuessTracker: List.filled(3, false), correctPositionTracker: List.filled(3, false),);
-   GuessModal guess3 = GuessModal(letters:'', correctGuessTracker: List.filled(3, false), correctPositionTracker: List.filled(3, false),);
+  GuessModal guess1 = GuessModal(
+    letters: '',
+    correctGuessTracker: List.filled(3, false),
+    correctPositionTracker: List.filled(3, false),
+  );
+  GuessModal guess2 = GuessModal(
+    letters: '',
+    correctGuessTracker: List.filled(3, false),
+    correctPositionTracker: List.filled(3, false),
+  );
+  GuessModal guess3 = GuessModal(
+    letters: '',
+    correctGuessTracker: List.filled(3, false),
+    correctPositionTracker: List.filled(3, false),
+  );
 
   int guessCountTracker = 0;
 
@@ -110,9 +122,10 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     return GuessModal(
-        letters: currentGuess,
-        correctGuessTracker: correctGuessTracker,
-        correctPositionTracker: correctPositionTracker,);
+      letters: currentGuess,
+      correctGuessTracker: correctGuessTracker,
+      correctPositionTracker: correctPositionTracker,
+    );
   }
 
   TextEditingController inputCtrl1 = TextEditingController();
@@ -174,7 +187,10 @@ class _MyHomePageState extends State<MyHomePage> {
             DisabledGuess(guess: guess1),
             DisabledGuess(guess: guess2),
             DisabledGuess(guess: guess3),
-          ElevatedButton(onPressed: _print,child: Text('Guess me'),),
+            ElevatedButton(
+              onPressed: _print,
+              child: Text('Guess me'),
+            ),
           ],
         ),
       ),
