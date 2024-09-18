@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
+import 'package:flutter/services.dart';
 import 'package:myapp/screens/popup.dart';
 import '../modals/guess_modal.dart';
 import 'disabled_guess.dart';
@@ -219,6 +220,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       child: TextField(
         controller: controller,
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+        ],
         maxLength: 1,
         keyboardType: TextInputType.name,
         textAlign: TextAlign.center,
