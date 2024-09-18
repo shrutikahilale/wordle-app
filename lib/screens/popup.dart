@@ -14,7 +14,7 @@ class ReusablePopup extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor:
-          severity == 'success' ? Colors.lightGreen : Colors.redAccent,
+          severity == 'success' ? const Color.fromARGB(255, 68, 255, 171) :  const Color.fromARGB(255, 255, 59, 128),
       title: Text(
         guessText,
         style: const TextStyle(
@@ -25,8 +25,10 @@ class ReusablePopup extends StatelessWidget {
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child:
-              const Text('Play Again', style: TextStyle(color: Colors.white)),
+          child: Text(
+            severity == 'success' ? 'Yayy 🙌🥳' : 'Okay 🫠',
+            style: const TextStyle(color: Colors.white),
+          ),
         ),
       ],
     );
